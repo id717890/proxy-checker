@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "helpers/*": [
+        "src/helpers/*"
+      ],
+      "store": [
+        "src/store/index.ts"
+      ],
+      "store/*": [
+        "src/store/*"
+      ],
+      "app-constants": [
+        "src/common/constants/index.ts"
+      ],
+      "components": [
+        "src/components/index.ts"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "hooks": [
+        "src/hooks/index.ts"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "context": [
+        "src/context/index.ts"
+      ],
+      "context/*": [
+        "src/context/*"
+      ],
+      "views": [
+        "src/views/index.ts"
+      ],
+      "views/*": [
+        "src/views/*"
+      ],
+      "app-history": [
+        "src/common/history.ts"
+      ],
+    }
+  }
+}

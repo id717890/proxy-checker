@@ -1,0 +1,51 @@
+.formControl {
+  width: 100%;
+  background-color: transparent;
+
+  label {
+    background-color: transparent;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  textarea {
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    display: block;
+    width: 100%;
+    resize: none;
+    //height: 100%;
+    //border: 1px solid;
+    overflow: auto;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #b3b3ff;
+    }
+
+    &:active {
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: none;
+      background-color: transparent;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      //background-color: red;
+      //background: #E5E5E5;
+      //outline: 1px solid slategrey;
+      border-right: 10px;
+      background-color: #e5e5e5;
+    }
+  }
+}

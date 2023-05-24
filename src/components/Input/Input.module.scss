@@ -1,0 +1,29 @@
+.formControl {
+  width: 100%;
+  background-color: transparent;
+
+  label {
+    background-color: transparent;
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 12px;
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid #b3b3ff;
+    }
+
+    &:active {
+    }
+  }
+}

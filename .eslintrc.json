@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "./node_modules/gts/"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "node/no-unpublished-import": ["error", {
+      "allowModules": [
+        "classnames",
+        "@testing-library/react",
+        "@testing-library/jest-dom"
+      ]
+    }],
+    "node/no-extraneous-import": ["error", {
+      "allowModules": ["history"]
+    }],
+    "no-prototype-builtins": "off"
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  }
+}
