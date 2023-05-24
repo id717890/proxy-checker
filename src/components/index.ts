@@ -6,3 +6,4 @@ export {Welcome} from './Welcome';
 export {Notification} from './Notification';
 export {Loader} from './Loader';
 export {Statistics} from './Statistics';
+export {Result} from './Result';

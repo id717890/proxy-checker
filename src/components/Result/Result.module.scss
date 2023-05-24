@@ -1,0 +1,45 @@
+.notification {
+  max-width: none;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow: auto;
+  //border: 1px solid red;
+
+  .resultTable {
+    table-layout: fixed;
+    width: auto;
+    border-spacing: 0;
+
+    thead {
+      th {
+        background: #f7f8fa;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 12px 16px;
+        margin: 0;
+
+        &:first-child {
+          border-left: 1px solid #e5e5e5;
+        }
+
+        &:last-child {
+          border-right: 1px solid #e5e5e5;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        height: 64px;
+
+        td {
+          border: 1px solid red;
+        }
+      }
+    }
+  }
+}

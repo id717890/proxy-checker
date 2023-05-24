@@ -6,9 +6,10 @@ import cn from 'classnames';
 type Props = SelectHTMLAttributes<HTMLSelectElement> & {
   label?: string;
   classNameContainer?: string;
+  options: string[];
 };
 
-export function Select({label, classNameContainer, ...props}: Props) {
+export function Select({label, classNameContainer, options, ...props}: Props) {
   return (
     <div className={styles.formControl}>
       <label>{label}</label>
@@ -16,8 +17,9 @@ export function Select({label, classNameContainer, ...props}: Props) {
       <div className={cn(styles.select, classNameContainer)}>
         <div className={styles.icon} />
         <select {...props}>
-          <option value="v1" label="v1" />
-          <option value="v2" label="v2" />
+          {options.map(o => (
+            <option key={o} value={o} label={o} />
+          ))}
         </select>
       </div>
     </div>

@@ -1,14 +1,16 @@
 import styles from './Notification.module.scss';
 import Info from '../../assets/images/info.svg';
 import Close from '../../assets/images/close.svg';
+import cn from 'classnames';
 
 interface Props {
   onClose: VoidFunction;
+  className?: string;
 }
 
-export function Notification({onClose}: Props) {
+export function Notification({onClose, className}: Props) {
   return (
-    <div className={styles.notification}>
+    <div className={cn(styles.notification, className)}>
       <img src={Info} alt="info" />
       <div>
         <div className={styles.title}>Welcome to Info Proxy Checker</div>

@@ -12,6 +12,7 @@ module.exports = {
       'app-history': path.resolve(__dirname, 'src/common/history'),
       hooks: path.resolve(__dirname, 'src/hooks'),
       context: path.resolve(__dirname, 'src/context'),
+      types: path.resolve(__dirname, 'src/types'),
     },
   },
   plugins: [

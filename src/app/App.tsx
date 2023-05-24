@@ -5,6 +5,8 @@ import {useCallback, useState} from 'react';
 export function App() {
   const [value, setValue] = useState<ContextValue>({
     isFetching: false,
+    isInit: true,
+    hosts: [],
   });
 
   const onChange = useCallback((value: Partial<ContextValue>) => {

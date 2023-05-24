@@ -41,6 +41,12 @@
       "app-history": [
         "src/common/history.ts"
       ],
+      "types": [
+        "src/types/index.ts"
+      ],
+      "types/*": [
+        "src/types/*"
+      ]
     }
   }
 }
