@@ -22,30 +22,32 @@ export interface HostType {
    * Поле присутствует только если result=FAILED.
    * Содержит текст, например, "Failed to connect".
    */
-  error: '';
+  error: string;
   /**
    * Протокол прокси, варианты: SOCKS4, SOCKS5, HTTP. (1)
    */
-  protocol: 'SOCKS5';
+  protocol: string;
   /**
    * Выходной IP прокси. (1)
    */
-  exit_ip: '10.20.23.24';
+  exit_ip: string;
   /**
    * География выходного IP прокси. (1)
    */
-  exit_geo: {
-    country: 'US';
-    subdivision: 'Illinois';
-    city: 'Chicago';
-    isp: 'COMCAST-7922';
-  };
+  exit_geo: ExitGeo;
   /**
    * Имя хоста выходного IP прокси. (1)
    */
-  exit_host: 'abc.def.com';
+  exit_host: string;
   /**
    * Round trip time запроса, выполненного через прокси, в мс.
    */
-  rtt: 1200;
+  rtt: number;
+}
+
+interface ExitGeo {
+  country: string;
+  subdivision: string;
+  city: string;
+  isp: string;
 }

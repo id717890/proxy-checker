@@ -1,23 +1,77 @@
-import styles from './Statistics.module.scss';
 import {useMemo} from 'react';
+import {useAppContext} from 'context';
+import styles from './Statistics.module.scss';
+import moment from 'moment';
 
 export function Statistics() {
+  const {
+    value: {hosts, isDone, targetUrl, startTime, endTime},
+  } = useAppContext();
+
+  const successChecked = useMemo(() => {
+    return hosts.filter(h => h.result.toLowerCase() === 'ok').length;
+  }, [hosts]);
+
+  const errorChecked = useMemo(() => {
+    return hosts.filter(h => h.result.toLowerCase() === 'failed').length;
+  }, [hosts]);
+
+  const addressesChecked = useMemo(
+    () => successChecked + errorChecked,
+    [errorChecked, successChecked]
+  );
+
+  const maxResponsiveMs = useMemo(() => {
+    if (!hosts?.length) {
+      return '-';
+    }
+    const allResponses = hosts.map(h => h.rtt);
+    if (!allResponses?.length) {
+      return '-';
+    }
+    const max = Math.max(...allResponses);
+    return !max ? '-' : `${max}ms`;
+  }, [hosts]);
+
+  const status = useMemo(
+    () => (isDone ? 'Completed' : 'In progress'),
+    [isDone]
+  );
+
+  const duration = useMemo(() => {
+    if (!startTime) {
+      return '-';
+    }
+    const end = endTime ?? moment();
+    const diff = end.diff(startTime);
+    return moment.utc(diff).format('HH:mm:ss');
+  }, [startTime, endTime, hosts]);
+
   return (
     <div className={styles.statistics}>
       <div className={styles.title}>General</div>
-      <StatisticRow name="Check Status" value="Canceled" />
+      <StatisticRow name="Check Status" value={status} />
       <StatisticRow name="Check Type" value="SOCKS5" />
-      <StatisticRow name="Verification site" value="ya.ru:443" />
+      <StatisticRow name="Verification site" value={targetUrl} />
       <StatisticRow name="Request type" value="GET (HTTP)" />
-      <StatisticRow name="Max. response time" value="30s" />
-      <StatisticRow name="Number of checks" value="0/300" />
-      <StatisticRow name="Check time interval" value="00:01:26" />
+      <StatisticRow name="Max. response time" value={maxResponsiveMs} />
+      <StatisticRow name="Check time interval" value={duration} />
+
+      <br />
       <div className={styles.title} style={{marginTop: 48}}>
         Requests
       </div>
-      <StatisticRow name="Addresses checked" value="3025/10461" />
-      <StatisticRow color="green" name="Successful checks" value="2896" />
-      <StatisticRow color="red" name="Checks with errors" value="129" />
+      <StatisticRow name="Addresses checked" value={addressesChecked} />
+      <StatisticRow
+        color="green"
+        name="Successful checks"
+        value={successChecked}
+      />
+      <StatisticRow
+        color="red"
+        name="Checks with errors"
+        value={errorChecked}
+      />
     </div>
   );
 }

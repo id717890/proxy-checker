@@ -28,6 +28,7 @@ import {
 import {v4} from 'uuid';
 import {fakeProxy, proxyTypeOptions} from './constants';
 import {HostType} from 'types';
+import moment from 'moment';
 
 const axios = createAxios();
 
@@ -55,6 +56,8 @@ export function ProxyChecker() {
     };
     onChangeContext({
       isFetching: true,
+      targetUrl,
+      startTime: moment(),
     });
     await axios.post('/api/v1/proxy-checker/request', payload);
   }, [targetUrl, proxyList, session, proxyType]);
@@ -71,7 +74,7 @@ export function ProxyChecker() {
         '/api/v1/proxy-checker/result',
         payload
       );
-      const {status, data} = response;
+      const {data} = response;
       const responseData = data as RepeatedResponse;
       if (responseData.proxy_full?.length) {
         allHosts.current = responseData.proxy_full;
@@ -95,6 +98,10 @@ export function ProxyChecker() {
       }
       if (responseData.done) {
         console.log('exit done');
+        onChangeContext({
+          isDone: true,
+          endTime: moment(),
+        });
         return;
       }
       if (cancelled.current === true) {
@@ -131,21 +138,15 @@ export function ProxyChecker() {
   }, [cancelled]);
 
   useLayoutEffect(() => {
-    const container = document.getElementById('container');
     const left = document.getElementById('left');
     const body = document.getElementById('body');
     const content = document.getElementById('content');
-    // container;
 
     const paddingLeft = window
       .getComputedStyle(content, null)
       .getPropertyValue('padding-left')
       .replace('px', '');
 
-    // console.log(body.offsetWidth, left.clientWidth);
-    // console.log(
-    //   window.getComputedStyle(content, null).getPropertyValue('padding-left')
-    // );
     content.style.width = `${
       body.clientWidth - left.clientWidth - parseInt(paddingLeft)
     }px`;

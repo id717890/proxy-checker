@@ -18,7 +18,7 @@ export function Host({host}: Props) {
       <td>{host.exit_ip}</td>
       <td>{host.exit_geo?.country}</td>
       <td>{host.exit_host}</td>
-      <td>-</td>
+      <td>{host.rtt}</td>
       <td>{host.error}</td>
     </tr>
   );

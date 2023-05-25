@@ -6,7 +6,11 @@ export function App() {
   const [value, setValue] = useState<ContextValue>({
     isFetching: false,
     isInit: false,
+    isDone: false,
     hosts: [],
+    targetUrl: null,
+    endTime: null,
+    startTime: null,
   });
 
   const onChange = useCallback((value: Partial<ContextValue>) => {
