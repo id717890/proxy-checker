@@ -1,18 +1,13 @@
 import React from 'react';
 import './App.scss';
-// import './App.less';
 import {Provider} from 'react-redux';
 import store from 'store';
 import ReactDOM from 'react-dom';
-import {App, AppConfiguration} from './app';
-// import 'moment/locale/ru';
-// import 'leaflet/dist/leaflet.css';
+import {App} from './App';
 
 ReactDOM.render(
   <Provider store={store}>
-    {/*<AppConfiguration>*/}
     <App />
-    {/*</AppConfiguration>*/}
   </Provider>,
   document.getElementById('root')
 );

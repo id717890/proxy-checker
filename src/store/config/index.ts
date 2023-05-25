@@ -5,8 +5,6 @@ export {
   historySelector,
   ceremonySelector,
   questionSelector,
-  leftMenuSelector,
-  rightMenuSelector,
   siteSelector,
   isSendingSelector,
 } from './selectors';

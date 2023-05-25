@@ -1,6 +1,6 @@
 export type Nullable<T> = T | null | undefined;
 
-export interface Host {
+export interface HostType {
   host: string;
   port: number;
   login: Nullable<string>;

@@ -11,7 +11,6 @@ import {
   MenuItem,
   Site,
 } from './types';
-import {Menu} from 'app-constants';
 import {Preloaders} from './constants';
 
 export const configRawSelector = (state: RootState): ConfigState =>
@@ -50,40 +49,6 @@ export const gallerySelector = createSelector(
 export const mapSelector = createSelector(
   [configRawSelector],
   (config): Map => config.map
-);
-
-export const leftMenuSelector = createSelector(
-  [historySelector, inviteSelector, ceremonySelector],
-  (ourStory, invite, ceremony): MenuItem[] => {
-    const result: MenuItem[] = [];
-    if (ourStory) {
-      result.push(Menu.OUR_STORY);
-    }
-    if (invite) {
-      result.push(Menu.INVITE);
-    }
-    if (ceremony) {
-      result.push(Menu.CEREMONY);
-    }
-    return result;
-  }
-);
-
-export const rightMenuSelector = createSelector(
-  [gallerySelector, questionSelector, mapSelector],
-  (gallery, question, map): MenuItem[] => {
-    const result: MenuItem[] = [];
-    if (gallery) {
-      result.push(Menu.GALLERY);
-    }
-    if (question) {
-      result.push(Menu.QUESTION);
-    }
-    if (map) {
-      result.push(Menu.MAP);
-    }
-    return result;
-  }
 );
 
 export const siteSelector = createSelector(

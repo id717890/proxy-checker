@@ -1,3 +1,5 @@
+import {HostType} from 'types';
+
 export interface FirstRequest {
   proxy_type: string;
   proxy_list: string;
@@ -13,7 +15,8 @@ export interface RepeatedRequest {
 
 export interface RepeatedResponse {
   done: boolean;
-  proxy_full: any;
+  proxy_full: HostType[];
+  proxy_update: HostType[];
   version: Version;
 }
 

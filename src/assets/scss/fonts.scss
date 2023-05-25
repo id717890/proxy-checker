@@ -11,6 +11,16 @@
 
 @font-face {
   font-family: 'Metropolis';
+  src: url('../fonts/metropolis/Metropolis-Medium.woff2') format('woff2'),
+    url('../fonts/metropolis/Metropolis-Medium.woff') format('woff'),
+    url('../fonts/metropolis/Metropolis-Medium.ttf') format('truetype'),
+    url('../fonts/metropolis/Metropolis-Medium.eot') format('embedded-opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Metropolis';
   src: url('../fonts/metropolis/Metropolis-SemiBold.woff2') format('woff2'),
     url('../fonts/metropolis/Metropolis-SemiBold.woff') format('woff'),
     url('../fonts/metropolis/Metropolis-SemiBold.ttf') format('truetype'),

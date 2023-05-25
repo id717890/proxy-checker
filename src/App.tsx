@@ -1,11 +1,11 @@
+import {useCallback, useState} from 'react';
 import {AppProvider, ContextValue} from 'context';
 import {ProxyChecker} from 'views';
-import {useCallback, useState} from 'react';
 
 export function App() {
   const [value, setValue] = useState<ContextValue>({
     isFetching: false,
-    isInit: true,
+    isInit: false,
     hosts: [],
   });
 

@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {Host} from 'types';
+import {HostType} from 'types';
 
 export interface ContextType {
   value: ContextValue;
@@ -9,7 +9,7 @@ export interface ContextType {
 export interface ContextValue {
   isFetching: boolean;
   isInit: boolean;
-  hosts: Host[];
+  hosts: HostType[];
 }
 
 export const AppContext = createContext<ContextType | null>(null);
