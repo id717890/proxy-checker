@@ -32,20 +32,25 @@ import moment from 'moment';
 
 const axios = createAxios();
 
+const DEFAULT_PROXY_TYPE = 'AUTO';
+
 export function ProxyChecker() {
   const {
     onChangeContext,
     value: {isInit, isFetching, hosts},
   } = useAppContext();
   const [targetUrl, setTargetUrl] = useState('https://www.google.com');
-  const [proxyType, setProxyType] = useState<ProxyType>('AUTO');
+  const [proxyType, setProxyType] = useState<ProxyType>(DEFAULT_PROXY_TYPE);
   const [proxyList, setProxyList] = useState(fakeProxy);
 
   const session = useRef<string>(v4());
   const cancelled = useRef<boolean>(false);
   const allHosts = useRef<HostType[]>(hosts);
 
-  const disabled = useMemo(() => isFetching, [isFinite]);
+  const disabled = useMemo(
+    () => (isFetching && !isInit) || !targetUrl || !proxyList,
+    [targetUrl, proxyList, isFetching, isInit]
+  );
 
   const onStart = useCallback(async () => {
     const payload: FirstRequest = {
@@ -58,6 +63,10 @@ export function ProxyChecker() {
       isFetching: true,
       targetUrl,
       startTime: moment(),
+      isDone: false,
+      hosts: [],
+      endTime: null,
+      isInit: false,
     });
     await axios.post('/api/v1/proxy-checker/request', payload);
   }, [targetUrl, proxyList, session, proxyType]);
@@ -100,6 +109,7 @@ export function ProxyChecker() {
         console.log('exit done');
         onChangeContext({
           isDone: true,
+          isFetching: false,
           endTime: moment(),
         });
         return;
@@ -133,7 +143,13 @@ export function ProxyChecker() {
     await onRequest(undefined);
   };
 
-  const onCancelHandler = useCallback(() => {
+  const onClear = useCallback(() => {
+    setTargetUrl('');
+    setProxyType(DEFAULT_PROXY_TYPE);
+    setProxyList('');
+  }, []);
+
+  const onCancel = useCallback(() => {
     cancelled.current = true;
   }, [cancelled]);
 
@@ -152,6 +168,10 @@ export function ProxyChecker() {
     }px`;
     content.style.height = `${left.clientHeight}px`;
   }, [isInit]);
+
+  const startBtnLabel = useMemo(() => {
+    return isFetching && isInit ? 'Restart' : 'Start';
+  }, [isFetching, isInit]);
 
   return (
     <div className="container" id="container">
@@ -185,14 +205,18 @@ export function ProxyChecker() {
             value={proxyList}
             onChange={onChangeProxyList}
           />
-          <Button disabled={disabled} text="Start" onClick={onStartHandler} />
-          <Button kind="link" text="Clear all" onClick={onCancelHandler} />
+          <Button
+            disabled={disabled}
+            text={startBtnLabel}
+            onClick={onStartHandler}
+          />
+          <Button kind="link" text="Clear all" onClick={onClear} />
 
           <br />
           {isInit && <Statistics />}
         </div>
         <div className="content" id="content">
-          {!isInit ? <Welcome /> : <Result />}
+          {!isInit ? <Welcome /> : <Result onCancel={onCancel} />}
         </div>
       </div>
     </div>

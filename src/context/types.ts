@@ -5,6 +5,7 @@ import {Moment} from 'moment';
 export interface ContextType {
   value: ContextValue;
   onChangeContext: (value: Partial<ContextValue>) => void;
+  onReset: VoidFunction;
 }
 
 export interface ContextValue {

@@ -1,14 +1,25 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import {useAppContext} from 'context';
 import {Host} from './Host';
 import {Button, Notification} from 'components';
 import styles from './Result.module.scss';
 
-export function Result() {
+interface Props {
+  onCancel: VoidFunction;
+}
+
+export function Result({onCancel}: Props) {
+  const {onReset} = useAppContext();
   const [showNotification, setNotification] = useState(true);
   const {
     value: {hosts},
   } = useAppContext();
+
+  const onSearchNew = useCallback(() => {
+    onCancel();
+    onReset();
+  }, [onCancel, onReset]);
+
   return (
     <>
       {showNotification && (
@@ -55,7 +66,7 @@ export function Result() {
         </table>
       </div>
       <div className={styles.actions}>
-        <Button text="Search New" />
+        <Button text="Search New" onClick={onSearchNew} />
         <Button text="Download xlsx" />
       </div>
     </>

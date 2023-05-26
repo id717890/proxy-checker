@@ -1,7 +1,7 @@
 import {useMemo} from 'react';
+import moment from 'moment';
 import {useAppContext} from 'context';
 import styles from './Statistics.module.scss';
-import moment from 'moment';
 
 export function Statistics() {
   const {
@@ -25,12 +25,14 @@ export function Statistics() {
     if (!hosts?.length) {
       return '-';
     }
-    const allResponses = hosts.map(h => h.rtt);
+    const allResponses = hosts
+      .filter(h => h.rtt !== null && h.rtt !== undefined)
+      .map(h => h.rtt);
     if (!allResponses?.length) {
       return '-';
     }
     const max = Math.max(...allResponses);
-    return !max ? '-' : `${max}ms`;
+    return !max ? '-' : `${max} ms`;
   }, [hosts]);
 
   const status = useMemo(
