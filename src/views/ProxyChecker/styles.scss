@@ -1,9 +1,16 @@
 .container {
   min-height: 100vh;
   display: block;
-  //width: 100%;
 
-  padding: 0px 135px 64px 135px;
+  padding: 0 135px 64px 135px;
+
+  @media (max-width: 992px) {
+    padding: 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
 
   .header {
     h1 {
@@ -29,6 +36,10 @@
     flex-flow: row nowrap;
     align-items: flex-start;
 
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+
     .left {
       padding: 16px;
       background: #f9fafb !important;
@@ -37,6 +48,12 @@
       display: flex;
       flex: 0 0 440px;
       flex-direction: column;
+
+      @media (max-width: 992px) {
+        flex: 1 0 auto;
+        margin-bottom: 48px;
+        align-self: stretch;
+      }
 
       h1 {
         font-size: 20px;
@@ -48,9 +65,14 @@
     .content {
       padding-left: 32px;
       display: flex;
-      flex: 1 1 auto;
+      flex: 1 0 auto;
       flex-direction: column;
-      //border: 1px solid yellow;
+
+      @media (max-width: 992px) {
+        flex: 1 0 auto;
+        align-self: stretch;
+        padding-left: 0;
+      }
     }
   }
 }

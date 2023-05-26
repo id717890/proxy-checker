@@ -9,6 +9,7 @@
   overflow: auto;
   height: 100%;
   border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
 
   .resultTable {
     table-layout: fixed;
@@ -22,7 +23,7 @@
 
         th {
           background: #f7f8fa;
-          border-top: 1px solid #e5e5e5;
+          //border-top: 1px solid #e5e5e5;
           border-bottom: 1px solid #e5e5e5;
           padding: 12px;
           margin: 0;
@@ -80,8 +81,18 @@
   margin-top: 16px;
   display: flex;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
   button:first-child {
     margin-right: 16px;
+
+    @media (max-width: 768px) {
+      min-width: unset;
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 
   button {

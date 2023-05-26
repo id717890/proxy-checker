@@ -154,6 +154,9 @@ export function ProxyChecker() {
   }, [cancelled]);
 
   useLayoutEffect(() => {
+    // if (window.innerWidth <= 992) {
+    //   return;
+    // }
     const left = document.getElementById('left');
     const body = document.getElementById('body');
     const content = document.getElementById('content');
@@ -163,9 +166,11 @@ export function ProxyChecker() {
       .getPropertyValue('padding-left')
       .replace('px', '');
 
-    content.style.width = `${
-      body.clientWidth - left.clientWidth - parseInt(paddingLeft)
-    }px`;
+    if (window.innerWidth > 992) {
+      content.style.width = `${
+        body.clientWidth - left.clientWidth - parseInt(paddingLeft)
+      }px`;
+    }
     content.style.height = `${left.clientHeight}px`;
   }, [isInit]);
 
