@@ -10,6 +10,7 @@ const DEFAULT_STATE: ContextValue = {
   targetUrl: null,
   endTime: null,
   startTime: null,
+  protocol: null,
 };
 
 export function App() {

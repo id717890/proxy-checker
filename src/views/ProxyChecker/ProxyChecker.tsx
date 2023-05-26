@@ -24,10 +24,10 @@ import {
   RepeatedRequest,
   RepeatedResponse,
   Version,
-} from './types';
+  HostType,
+} from 'types';
 import {v4} from 'uuid';
 import {fakeProxy, proxyTypeOptions} from './constants';
-import {HostType} from 'types';
 import moment from 'moment';
 
 const axios = createAxios();
@@ -67,6 +67,7 @@ export function ProxyChecker() {
       hosts: [],
       endTime: null,
       isInit: false,
+      protocol: proxyType,
     });
     await axios.post('/api/v1/proxy-checker/request', payload);
   }, [targetUrl, proxyList, session, proxyType]);
@@ -126,7 +127,6 @@ export function ProxyChecker() {
   );
 
   const onChangeTargetUrl = (event: ChangeEvent<HTMLInputElement>) => {
-    // const request: RequestPayload = {};
     setTargetUrl(event.target.value);
   };
 
@@ -201,7 +201,7 @@ export function ProxyChecker() {
           <Textarea
             label="Output"
             className="mb-8"
-            rows={5}
+            rows={13}
             value={proxyList}
             onChange={onChangeProxyList}
           />

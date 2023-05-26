@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {HostType, Nullable} from 'types';
+import {HostType, Nullable, ProxyType} from 'types';
 import {Moment} from 'moment';
 
 export interface ContextType {
@@ -16,6 +16,7 @@ export interface ContextValue {
   hosts: HostType[];
   startTime: Nullable<Moment>;
   endTime: Nullable<Moment>;
+  protocol: ProxyType;
 }
 
 export const AppContext = createContext<ContextType | null>(null);

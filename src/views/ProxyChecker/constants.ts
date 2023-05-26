@@ -1,4 +1,4 @@
-import {ProxyType} from './types';
+import {ProxyType} from 'types';
 
 export const proxyTypeOptions: ProxyType[] = [
   'AUTO',

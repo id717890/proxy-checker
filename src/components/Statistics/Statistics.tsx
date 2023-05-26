@@ -5,7 +5,7 @@ import styles from './Statistics.module.scss';
 
 export function Statistics() {
   const {
-    value: {hosts, isDone, targetUrl, startTime, endTime},
+    value: {hosts, isDone, targetUrl, startTime, endTime, protocol},
   } = useAppContext();
 
   const successChecked = useMemo(() => {
@@ -53,7 +53,7 @@ export function Statistics() {
     <div className={styles.statistics}>
       <div className={styles.title}>General</div>
       <StatisticRow name="Check Status" value={status} />
-      <StatisticRow name="Check Type" value="SOCKS5" />
+      <StatisticRow name="Proxy protocol" value={protocol} />
       <StatisticRow name="Verification site" value={targetUrl} />
       <StatisticRow name="Request type" value="GET (HTTP)" />
       <StatisticRow name="Max. response time" value={maxResponsiveMs} />
