@@ -17,8 +17,6 @@
     display: block;
     width: 100%;
     resize: none;
-    //height: 100%;
-    //border: 1px solid;
     overflow: auto;
 
     &:focus {
@@ -41,9 +39,6 @@
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      //background-color: red;
-      //background: #E5E5E5;
-      //outline: 1px solid slategrey;
       border-right: 10px;
       background-color: #e5e5e5;
     }

@@ -154,9 +154,6 @@ export function ProxyChecker() {
   }, [cancelled]);
 
   useLayoutEffect(() => {
-    // if (window.innerWidth <= 992) {
-    //   return;
-    // }
     const left = document.getElementById('left');
     const body = document.getElementById('body');
     const content = document.getElementById('content');
