@@ -64,7 +64,9 @@ export function Result({onCancel}: Props) {
             ))}
           </tbody>
         </table>
+        {/*<div className={styles.line} />*/}
       </div>
+      <div className={styles.line} />
       <div className={styles.actions}>
         <Button text="Search New" onClick={onSearchNew} />
         <Button text="Download xlsx" />

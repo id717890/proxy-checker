@@ -7,6 +7,20 @@ export const proxyTypeOptions: ProxyType[] = [
   'SOCKS5',
 ];
 
+export const PLACEHOLDER = `
+Enter proxies here, one per line <br/>
+Available formats:<br/>
+login:password@host:port<br/>
+host,port,login,password<br/>
+http://login:password@host:port<br/>
+socks5://login:password@host:port<br/>
+host:port:login:password<br/>
+<br/>
+For proxy without authorization:<br/>
+host,port<br/>
+host:port<br/>
+`;
+
 export const fakeProxy = `Jy5vO5hkFjGGhCSyEjpL:RNW78Fm5@185.130.105.109:10000
 Jy5vO5hkFjGGhCSyEjpL:RNW78Fm5@185.130.105.109:10001
 Jy5vO5hkFjGGhCSyEjpL:RNW78Fm5@185.130.105.109:10002

@@ -27,7 +27,7 @@ import {
   HostType,
 } from 'types';
 import {v4} from 'uuid';
-import {fakeProxy, proxyTypeOptions} from './constants';
+import {fakeProxy, PLACEHOLDER, proxyTypeOptions} from './constants';
 import moment from 'moment';
 
 const axios = createAxios();
@@ -41,7 +41,7 @@ export function ProxyChecker() {
   } = useAppContext();
   const [targetUrl, setTargetUrl] = useState('https://www.google.com');
   const [proxyType, setProxyType] = useState<ProxyType>(DEFAULT_PROXY_TYPE);
-  const [proxyList, setProxyList] = useState(fakeProxy);
+  const [proxyList, setProxyList] = useState('');
 
   const session = useRef<string>(v4());
   const cancelled = useRef<boolean>(false);
@@ -87,7 +87,9 @@ export function ProxyChecker() {
       const {data} = response;
       const responseData = data as RepeatedResponse;
       if (responseData.proxy_full?.length) {
-        allHosts.current = responseData.proxy_full;
+        allHosts.current = responseData.proxy_full.sort(
+          (a, b) => a.position - b.position
+        );
         onChangeContext({
           isInit: true,
           hosts: responseData.proxy_full,
@@ -120,7 +122,7 @@ export function ProxyChecker() {
         cancelled.current = false;
         return;
       }
-      if (responseData) await new Promise(resole => setTimeout(resole, 1000));
+      if (responseData) await new Promise(resole => setTimeout(resole, 0));
       await onRequest(responseData.version);
     },
     [targetUrl, proxyList, session, cancelled, allHosts]
@@ -202,10 +204,11 @@ export function ProxyChecker() {
           />
           <Textarea
             label="Output"
-            className="mb-8"
+            classNameContainer="mb-8"
             rows={13}
             value={proxyList}
             onChange={onChangeProxyList}
+            placeholder={PLACEHOLDER}
           />
           <Button
             disabled={disabled}
