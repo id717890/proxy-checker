@@ -8,7 +8,6 @@ export const proxyTypeOptions: ProxyType[] = [
 ];
 
 export const PLACEHOLDER = `
-Enter proxies here, one per line <br/>
 Available formats:<br/>
 login:password@host:port<br/>
 host,port,login,password<br/>

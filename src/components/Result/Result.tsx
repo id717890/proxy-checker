@@ -31,31 +31,31 @@ export function Result({onCancel}: Props) {
       <div className={styles.tableWrapper}>
         <table className={styles.resultTable} cellPadding={0} cellSpacing={0}>
           <colgroup>
-            <col width="150" />
             <col width="200" />
+            <col width="150" />
+            <col width="150" />
+            <col width="300" />
+            <col width="100" />
+            <col width="150" />
+            <col width="150" />
+            <col width="150" />
             <col width="250" />
             <col width="150" />
-            <col width="150" />
-            <col width="150" />
-            <col width="150" />
-            <col width="150" />
-            <col width="100" />
-            <col width="300" />
           </colgroup>
           <thead>
             <tr>
-              <th>Status</th>
               <th>Address</th>
-              <th>Login</th>
-              <th>Password</th>
               <th>Type</th>
-              <th>Exit IP</th>
-              <th>Exit IP Geo</th>
-              <th>Exit host</th>
+              <th>Status</th>
+              <th>Error</th>
               <th>
                 Response <br /> time,ms
               </th>
-              <th>Error</th>
+              <th>Exit IP</th>
+              <th>Exit host</th>
+              <th>Exit IP Geo</th>
+              <th>Login</th>
+              <th>Password</th>
             </tr>
           </thead>
           <tbody>

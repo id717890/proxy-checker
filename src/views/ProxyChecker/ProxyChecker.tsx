@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import moment from 'moment';
 import {useAppContext} from 'context';
 import {
   Button,
@@ -28,7 +29,6 @@ import {
 } from 'types';
 import {v4} from 'uuid';
 import {fakeProxy, PLACEHOLDER, proxyTypeOptions} from './constants';
-import moment from 'moment';
 
 const axios = createAxios();
 
@@ -182,8 +182,8 @@ export function ProxyChecker() {
       <div className="header mb-8">
         <h1 className="mb-4">🏁 Let’s Start by Checking your Site</h1>
         <h4>
-          Pirate ipsum arrgh bounty warp jack. Blossom hail-shot pinnace
-          starboard pirate run landlubber. Pounders spot jib me warp.
+          Enter the target URL, choose the proxy type, input the proxy details –
+          and get the test results.
         </h4>
       </div>
       <div className="body" id="body">
@@ -191,7 +191,7 @@ export function ProxyChecker() {
           <h1 className="mb-6">Checking Site</h1>
           <Input
             label="Target URL"
-            className="mb-8"
+            className={`mb-8 ${!targetUrl ? 'empty' : ''}`}
             value={targetUrl}
             onChange={onChangeTargetUrl}
           />
@@ -203,7 +203,7 @@ export function ProxyChecker() {
             options={proxyTypeOptions}
           />
           <Textarea
-            label="Output"
+            label="Enter proxies here, one per line"
             classNameContainer="mb-8"
             rows={13}
             value={proxyList}
