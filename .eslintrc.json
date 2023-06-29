@@ -24,7 +24,8 @@
     "node/no-extraneous-import": ["error", {
       "allowModules": ["history"]
     }],
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+    "node/no-unsupported-features/node-builtins": "off"
   },
   "parserOptions": {
     "sourceType": "module",

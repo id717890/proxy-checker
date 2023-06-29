@@ -17,16 +17,16 @@ export function Host({host}: Props) {
 
   return (
     <tr>
-      <td>{host.result}</td>
       <td>{address}</td>
+      <td>{host.protocol}</td>
+      <td>{host.result}</td>
+      <td>{host.error}</td>
+      <td>{host.rtt}</td>
+      <td>{host.exit_ip}</td>
+      <td>{host.exit_host}</td>
+      <td>{country}</td>
       <td>{host.login}</td>
       <td>{host.password}</td>
-      <td>{host.protocol}</td>
-      <td>{host.exit_ip}</td>
-      <td>{country}</td>
-      <td>{host.exit_host}</td>
-      <td>{host.rtt}</td>
-      <td>{host.error}</td>
     </tr>
   );
 }

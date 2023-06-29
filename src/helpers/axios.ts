@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from 'axios';
 
 export function createAxios(): AxiosInstance {
   const instance = axios.create({
-    baseURL: 'https://inf-proxy-checker.netlic.ru/',
+    baseURL: process.env.REACT_APP_DOMAIN,
   });
 
   instance.interceptors.response.use(

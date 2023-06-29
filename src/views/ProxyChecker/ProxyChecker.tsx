@@ -221,7 +221,11 @@ export function ProxyChecker() {
           {isInit && <Statistics />}
         </div>
         <div className="content" id="content">
-          {!isInit ? <Welcome /> : <Result onCancel={onCancel} />}
+          {!isInit ? (
+            <Welcome />
+          ) : (
+            <Result onCancel={onCancel} session={session.current} />
+          )}
         </div>
       </div>
     </div>
